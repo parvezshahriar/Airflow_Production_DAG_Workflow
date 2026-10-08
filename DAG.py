@@ -2,7 +2,7 @@
 from airflow.sdk import dag, task, Variable
 from airflow.providers.standard.sensors.filesystem import FileSensor
 from airflow.providers.smtp.notifications.smtp import SmtpNotifier
-from airflow.providers.standard.operators.hitl import ____
+from airflow.providers.standard.operators.hitl import HITLEntryOperator
 
 from pendulum import datetime
 
@@ -49,7 +49,7 @@ def sales_etl():
   def regular_monthly_task():
     print(f'Processing data and automatically updating dataset')
     
-  yearend_approval_task = ____(
+  yearend_approval_task = HITLEntryOperator(
     task_id="____",
     subject="Sales data processing - Approval Required",
     body=(
